@@ -31,6 +31,7 @@ public class JNotePad extends JFrame {
     private JMenuItem itemViewhelp,itemSend,itemAbout;
     private JCheckBoxMenuItem itemWrap;
     private JTextArea txtEditor;
+    private JFontDialog dialog;
 
     public JNotePad(String title) {
         super(title);
@@ -116,6 +117,10 @@ public class JNotePad extends JFrame {
                 
     }
 
+    public JTextArea getTxtEditor() {
+        return txtEditor;
+    }
+
     private void CreateGUI() {
         txtEditor = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(txtEditor);
@@ -125,5 +130,18 @@ public class JNotePad extends JFrame {
     }
 
     private void ProcessEvent() {
+        itemFont.addActionListener((e)->{
+        dialog = new JFontDialog(this, true);
+        dialog.setVisible(true);
+    });
+        //xử lý item word wrap
+        itemWrap.addItemListener((e)->{
+            if(itemWrap.isSelected())
+                txtEditor.setLineWrap(true);
+            else
+                txtEditor.setLineWrap(false);
+    });
+        //xử lý item open
+        
     }
 }
